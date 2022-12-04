@@ -1,0 +1,31 @@
+type Genre {
+    id: ID!
+    name: String!
+}
+
+input GenreSaveCommand {
+    name: String!
+}
+
+input GenreUpdateCommand {
+    id: ID!
+    name: String!
+}
+
+input ListingArguments {
+    offset: Int
+    max: Int
+    sort: String
+    order: String
+}
+
+extend type Query {
+    genres(args: ListingArguments): [Genre]!
+    genre(id: ID!): Genre
+}
+
+extend type Mutation {
+    createGenre(genre: GenreSaveCommand!): Genre!
+    updateGenre(genre: GenreUpdateCommand!): String!
+    removeGenre(id: ID!): String!
+}
